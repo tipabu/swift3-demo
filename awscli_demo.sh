@@ -22,7 +22,15 @@ run() {
 }
 
 run swiftstack
-echo
+if [ "$1" == "--no-wait" ]; then
+    echo
+else
+    read REPLY
+fi
 run swiftstack-v4
-echo
+if [ "$1" == "--no-wait" ]; then
+    echo
+else
+    read REPLY
+fi
 run swiftstack-query
