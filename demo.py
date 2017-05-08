@@ -10,8 +10,9 @@ parser.add_argument('python_file')
 parser.add_argument('--no-wait', action='store_false', dest='wait')
 args = parser.parse_args()
 
+buffer = []
+interrupted = False
 with open(args.python_file, 'rt') as fp:
-    buffer = []
     for line in fp:
         if line.startswith('#!'):
             continue  # ignore shebang
@@ -26,6 +27,7 @@ with open(args.python_file, 'rt') as fp:
                 try:
                     input()
                 except KeyboardInterrupt:
+                    interrupted = True
                     break
                 except:
                     pass
@@ -39,3 +41,10 @@ with open(args.python_file, 'rt') as fp:
             e, v, tb = sys.exc_info()
             traceback.print_exception(e, v, tb.tb_next)
             buffer = []
+
+if args.wait and not interrupted:
+    print('>>> quit', end='')
+    try:
+        input()
+    except:
+        pass
