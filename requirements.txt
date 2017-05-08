@@ -1,2 +1,4 @@
 awscli
 awscli-plugin-endpoint
+boto
+requests
