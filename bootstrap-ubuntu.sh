@@ -33,5 +33,5 @@ cp -r "$REPO"/* "$REPO"/.[^.]* "$HOME"
 popd >/dev/null
 rm -rf "$TEMPDIR"
 
-sudo apt-get install -y python-virtualenv libyaml-dev python3 python3-dev python-dev
+sudo apt-get install -y python-virtualenv libyaml-dev python3 python3-dev python-dev python-tox
 ( tty -s || [ -t 1 ] ) && echo 'Done!'
