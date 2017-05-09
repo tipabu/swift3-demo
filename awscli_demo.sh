@@ -21,7 +21,7 @@ run() {
     { set +x; } 2> /dev/null
 }
 
-run swiftstack 'Hello, Boston!'
+run swiftstack-v2 'Hello, Boston!'
 if [ "$1" == "--no-wait" ]; then
     echo
 else
@@ -33,4 +33,4 @@ if [ "$1" == "--no-wait" ]; then
 else
     read REPLY
 fi
-run swiftstack-query 'And pre-signed URLs'
+run swiftstack-v2query 'And pre-signed URLs'
