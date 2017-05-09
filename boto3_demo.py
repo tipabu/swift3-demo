@@ -9,11 +9,12 @@ list(s3.buckets.all())
 bucket = s3.create_bucket(Bucket='test-bucket')
 list(s3.buckets.all())
 
-bucket.upload_fileobj(Key='test-object', Fileobj=io.BytesIO(b'Hello, Boston!'))
+bucket.upload_fileobj(Key='test-object',
+                      Fileobj=io.BytesIO(b'a' * (1 << 24)))
 list(bucket.objects.all())
 
 key = bucket.Object('test-object')
-key.get()['Body'].read()
+len(key.get()['Body'].read())
 
 for bucket in s3.buckets.all():
     for key in bucket.objects.all():

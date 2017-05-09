@@ -11,7 +11,7 @@ run() {
     aws s3 mb s3://test-bucket
     aws s3 ls
 
-    echo 'Hello, world!' | aws s3 cp - s3://test-bucket/test-object
+    echo "$2" | aws s3 cp - s3://test-bucket/test-object
     aws s3 ls s3://test-bucket
 
     aws s3 cp s3://test-bucket/test-object -
@@ -21,16 +21,16 @@ run() {
     { set +x; } 2> /dev/null
 }
 
-run swiftstack
+run swiftstack 'Hello, Boston!'
 if [ "$1" == "--no-wait" ]; then
     echo
 else
     read REPLY
 fi
-run swiftstack-v4
+run swiftstack-v4 'Also supports v4 signatures'
 if [ "$1" == "--no-wait" ]; then
     echo
 else
     read REPLY
 fi
-run swiftstack-query
+run swiftstack-query 'And pre-signed URLs'
